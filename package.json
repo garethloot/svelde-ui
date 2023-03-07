@@ -1,6 +1,7 @@
 {
 	"name": "svelde-ui",
 	"version": "0.0.1",
+	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -51,6 +52,7 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"daisyui": "^2.51.3"
+		"daisyui": "^2.51.3",
+		"svelte-icons": "^2.1.0"
 	}
 }
