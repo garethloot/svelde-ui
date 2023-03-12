@@ -1,0 +1,18 @@
+export type TColor =
+	| 'primary'
+	| 'primary-focus'
+	| 'secondary'
+	| 'secondary-focus'
+	| 'accent'
+	| 'accent-focus'
+	| 'info'
+	| 'info-focus'
+	| 'success'
+	| 'success-focus'
+	| 'warning'
+	| 'warning-focus'
+	| 'error'
+	| 'error-focus'
+	| 'neutral'
+	| 'neutral-focus'
+	| 'none';
