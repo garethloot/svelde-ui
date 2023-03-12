@@ -1,21 +1,11 @@
 <script lang="ts">
-	import type { TInputWidth, TMessage, TSize } from '../../types/global';
-	import type { TColor } from '../../types/color';
-	import { createClass } from './styles';
-	import FormControl from '../FormControl/FormControl.svelte';
+	import { createClass, FormControl, SharedInputProps } from './imports';
 
-	export let checked = false;
-	export let label = '';
-	export let color: TColor = 'neutral';
-	export let width: TInputWidth = undefined;
-	export let message: TMessage = undefined;
-	export let size: TSize = 'md';
-	export let disabled = false;
+	export let { label, color, width, message, size, disabled, inline, checked } = SharedInputProps;
 
 	const classes = createClass(color, size, message);
 </script>
 
-<FormControl {width} {label} {message}>
-	<slot name="label-extra" slot="label-extra" />
+<FormControl {width} {label} {message} {inline}>
 	<input type="checkbox" class={classes} bind:checked on:change {disabled} />
 </FormControl>

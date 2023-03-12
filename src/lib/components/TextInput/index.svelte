@@ -1,23 +1,22 @@
 <script lang="ts">
-	import type { TSize, TMessage, TInputWidth } from '../../types/global';
-	import type { TTextInputColors } from './types';
-	import { createClass } from './styles';
-	import FormControl from '../FormControl/FormControl.svelte';
+	import { createClass, FormControl, SharedInputProps } from './imports';
 
-	export let value = '';
-	export let label = '';
-	export let placeholder = '';
-	export let color: TTextInputColors = 'neutral';
-	export let message: TMessage = undefined;
-	export let width: TInputWidth = undefined;
-	export let bordered = false;
-	export let size: TSize = 'md';
-	export let disabled = false;
+	export let {
+		value,
+		label,
+		color,
+		width,
+		message,
+		size,
+		disabled,
+		inline,
+		bordered,
+		placeholder
+	} = SharedInputProps;
 
 	const classes = createClass(color, size, bordered, message);
 </script>
 
-<FormControl {width} {label} {message}>
-	<slot name="label-extra" slot="label-extra" />
+<FormControl {width} {label} {message} {inline}>
 	<input type="text" class={classes} bind:value {placeholder} on:change {disabled} />
 </FormControl>

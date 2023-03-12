@@ -30,7 +30,7 @@ const MessageTypes: TClassStyles = {
 export const createClass = (
 	color: TTextInputColors,
 	size: TSize,
-	bordered: boolean,
+	bordered: boolean | undefined,
 	message: TMessage
 ) => {
 	const classes = ['input', Colors[color], Sizes[size]];

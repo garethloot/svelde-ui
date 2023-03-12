@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Button, Toggle, TextInput, Section, Swap } from '$lib';
-	import { MdAddCircle, MdAddCircleOutline } from 'svelte-icons/md';
+	import MdAddCircle from 'svelte-icons/md/MdAddCircle.svelte';
+	import MdAddCircleOutline from 'svelte-icons/md/MdAddCircleOutline.svelte';
 	let checked = true;
-	$: console.log(checked);
 </script>
 
 <Section>
@@ -16,11 +16,16 @@
 	<Toggle
 		bind:checked
 		color="primary"
+		inline
 		width="lg"
 		size="lg"
-		label="Testing a name that is a bit longer"
+		label="Testing a name that is a bit longer to see what happens when there is a long text"
 	/>
-	<TextInput bordered width="lg" label="Test" />
+	<TextInput
+		bordered
+		width="lg"
+		label="Testing a name that is a bit longer to see what happens when there is a long text"
+	/>
 	<Swap>
 		<MdAddCircle slot="on" />
 		<MdAddCircleOutline slot="off" />

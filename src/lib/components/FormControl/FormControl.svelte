@@ -1,26 +1,30 @@
 <script lang="ts">
-	import type { TInputWidth, TMessage } from '../../types/global';
-	import { createClass, getMessage } from './styles';
+	import { createClass, getMessage, SharedInputProps } from './imports';
 
-	export let width: TInputWidth = undefined;
-	export let label: string = '';
-	export let message: TMessage = undefined;
+	export let { width, label, message, inline } = SharedInputProps;
+
+	const { messageClasses, messageText } = getMessage(message);
 
 	const classes = createClass(width, message);
-	const { messageClasses, messageText } = getMessage(message);
 </script>
 
 <div class={classes}>
 	{#if label}
 		<label class="label">
-			<span class="label-text">{label}</span>
-			<slot name="label-extra" />
+			<span class="label-text truncate">
+				{label}
+			</span>
+			{#if inline}
+				<slot />
+			{/if}
 		</label>
 	{/if}
-	<slot />
+	{#if !inline}
+		<slot />
+	{/if}
 	{#if message}
-		<label class="label text-success">
+		<p class="label">
 			<span class={messageClasses}>{messageText}</span>
-		</label>
+		</p>
 	{/if}
 </div>
