@@ -1,6 +1,6 @@
-import type { TClassStyles, TMessage, TSize } from '../../types/global';
+import type { TClassStyles, TMessage, TSize } from '../../../types/global';
 import type { TTextInputColors } from './types';
-import { messageClassAndText } from '../../utils/message';
+import { messageClassAndText } from '../../../utils/message';
 
 const Colors: TClassStyles = {
 	primary: 'input-primary',

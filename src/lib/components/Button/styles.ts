@@ -1,5 +1,5 @@
 import type { TClassStyles } from '../../types/global';
-import type { TBtnColors, TBtnShape, TBtnSize, TBtnWidth } from './types';
+import { stylesToClass } from '$lib/utils/styles';
 
 const Colors: TClassStyles = {
 	primary: 'btn-primary',
@@ -10,7 +10,7 @@ const Colors: TClassStyles = {
 	warning: 'btn-warning',
 	ghost: 'btn-ghost',
 	link: 'btn-link',
-	neutral: ''
+	neutral: undefined
 };
 
 const Sizes: TClassStyles = {
@@ -20,7 +20,7 @@ const Sizes: TClassStyles = {
 	lg: 'btn-lg'
 };
 
-const IconSize: TClassStyles = {
+const IconSizes: TClassStyles = {
 	xs: 'h-3 w-3',
 	sm: 'h-4 w-4',
 	md: 'h-6 w-6',
@@ -34,28 +34,41 @@ const Gap: TClassStyles = {
 	lg: 'gap-4'
 };
 
-export const createClass = (
-	color: TBtnColors,
+const Shapes: TClassStyles = {
+	circle: 'btn-circle',
+	square: 'btn-square',
+	default: undefined
+};
+
+const Widths: TClassStyles = {
+	wide: 'btn-wide',
+	full: 'btn-block',
+	default: undefined
+};
+
+export const createClasses = (
+	color: TColor,
 	active: boolean,
 	outline: boolean,
 	loading: boolean,
 	noAnimation: boolean,
-	size: TBtnSize,
-	shape: TBtnShape,
-	width: TBtnWidth
+	size: TSize,
+	shape: TShape,
+	width: TWidth
 ) => {
-	const classes = ['btn', Gap[size], Colors[color], Sizes[size]];
-	if (active) classes.push('btn-active');
-	if (outline) classes.push('btn-outline');
-	if (loading) classes.push('loading');
-	if (noAnimation) classes.push('no-animation');
-	if (shape === 'circle') classes.push('btn-circle');
-	if (shape === 'square') classes.push('btn-square');
-	if (width === 'wide') classes.push('btn-wide');
-	if (width === 'full') classes.push('btn-block');
-	return classes.join(' ');
+	const btnClasses = ['btn', Gap[size], Colors[color], Sizes[size], Shapes[shape], Widths[width]];
+
+	if (active) btnClasses.push('btn-active');
+	if (outline) btnClasses.push('btn-outline');
+	if (loading) btnClasses.push('loading');
+	if (noAnimation) btnClasses.push('no-animation');
+
+	const iconClasses = [IconSizes[size]];
+
+	return { btnClasses: stylesToClass(btnClasses), iconClasses: stylesToClass(iconClasses) };
 };
 
-export const createIconClasses = (size: TBtnSize) => {
-	return IconSize[size];
-};
+export type TColor = keyof typeof Colors;
+export type TShape = keyof typeof Shapes;
+export type TSize = keyof typeof Sizes;
+export type TWidth = keyof typeof Widths;

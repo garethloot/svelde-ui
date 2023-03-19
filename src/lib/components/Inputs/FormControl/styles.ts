@@ -1,6 +1,6 @@
-import type { TClassStyles, TInputWidth, TMessage } from '../../types/global';
-import { inputWidth } from '../../utils/inputs';
-import { messageClassAndText } from '../../utils/message';
+import type { TClassStyles, TInputWidth, TMessage } from '../../../types/global';
+import { inputWidth } from '../../../utils/inputs';
+import { messageClassAndText } from '../../../utils/message';
 
 const MessageTypes: TClassStyles = {
 	success: 'text-success',

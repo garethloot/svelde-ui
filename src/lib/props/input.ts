@@ -1,4 +1,4 @@
-import type { ISharedInputProps } from '../../types/input';
+import type { ISharedInputProps } from '../types/input';
 
 export const SharedInputProps: ISharedInputProps = {
 	value: '',
