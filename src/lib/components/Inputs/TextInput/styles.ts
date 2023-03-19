@@ -1,6 +1,7 @@
-import type { TClassStyles, TMessage, TSize } from '../../../types/global';
-import type { TTextInputColors } from './types';
-import { messageClassAndText } from '../../../utils/message';
+import type { TClassStyles } from '../../../types/global';
+import { messageClass } from '../message';
+import type { TMessage } from '../message';
+import { stylesToClass } from '../../../utils/styles';
 
 const Colors: TClassStyles = {
 	primary: 'input-primary',
@@ -11,7 +12,7 @@ const Colors: TClassStyles = {
 	warning: 'input-warning',
 	ghost: 'input-ghost',
 	link: 'input-link',
-	neutral: ''
+	neutral: undefined
 };
 
 const Sizes: TClassStyles = {
@@ -21,20 +22,19 @@ const Sizes: TClassStyles = {
 	lg: 'input-lg'
 };
 
-const MessageTypes: TClassStyles = {
-	success: 'input-success',
-	warning: 'input-warning',
-	error: 'input-error'
-};
-
-export const createClass = (
-	color: TTextInputColors,
+export const createClasses = (
+	color: TColor,
 	size: TSize,
 	bordered: boolean | undefined,
 	message: TMessage
 ) => {
-	const classes = ['input', Colors[color], Sizes[size]];
-	if (bordered) classes.push('input-bordered');
-	if (message) classes.push(messageClassAndText(message, MessageTypes).classText);
-	return classes.join(' ');
+	const inputClasses = ['input', Colors[color], Sizes[size]];
+
+	if (bordered) inputClasses.push('input-bordered');
+	if (message) inputClasses.push(messageClass(message));
+
+	return { inputClasses: stylesToClass(inputClasses) };
 };
+
+export type TColor = keyof typeof Colors;
+export type TSize = keyof typeof Sizes;

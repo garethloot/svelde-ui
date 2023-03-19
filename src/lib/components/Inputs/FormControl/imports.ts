@@ -1,5 +1,5 @@
-import type { TInputWidth, TMessage } from '../../../types/global';
-import { createClass, getMessage } from './styles';
-import { SharedInputProps } from '../../../props/input';
+import { createClasses } from './styles';
+import { InputPropsDefaults } from '../props';
+import { messageText } from '../message';
 
-export { TInputWidth, TMessage, createClass, getMessage, SharedInputProps };
+export { createClasses, messageText, InputPropsDefaults };

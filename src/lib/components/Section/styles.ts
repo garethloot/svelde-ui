@@ -1,11 +1,12 @@
-import type { TClassStyles, TPaddingSize, TColor } from './types';
+import { stylesToClass } from '../../utils/styles';
+import type { TClassStyles } from '../../types/global';
 
 const YPaddingSizes: TClassStyles = {
 	xs: 'py-2',
 	sm: 'py-4',
 	md: 'py-8',
 	lg: 'py-16',
-	node: ''
+	none: undefined
 };
 
 const XPaddingSizes: TClassStyles = {
@@ -13,7 +14,7 @@ const XPaddingSizes: TClassStyles = {
 	sm: 'px-4',
 	md: 'px-8',
 	lg: 'px-16',
-	node: ''
+	none: undefined
 };
 
 const BackgroundColors: TClassStyles = {
@@ -33,17 +34,26 @@ const BackgroundColors: TClassStyles = {
 	'error-focus': 'bg-error-focus',
 	neutral: 'bg-neutral',
 	'neutral-focus': 'bg-neutral-focus',
-	none: ''
+	none: undefined
 };
 
 export const createClass = (
 	fluid: boolean,
 	yPadding: TPaddingSize,
 	xPadding: TPaddingSize,
-	bgColor: TColor
+	bgColor: TBackgroundColor
 ): TClassStyles => {
 	const sectionClasses = [BackgroundColors[bgColor]];
+
 	const containerClasses = [YPaddingSizes[yPadding], XPaddingSizes[xPadding]];
+
 	if (!fluid) containerClasses.push('container mx-auto');
-	return { sectionClasses: sectionClasses.join(' '), containerClasses: containerClasses.join(' ') };
+
+	return {
+		sectionClasses: stylesToClass(sectionClasses),
+		containerClasses: stylesToClass(containerClasses)
+	};
 };
+
+export type TBackgroundColor = keyof typeof BackgroundColors;
+export type TPaddingSize = keyof typeof YPaddingSizes;

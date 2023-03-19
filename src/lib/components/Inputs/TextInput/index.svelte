@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createClass, FormControl, SharedInputProps } from './imports';
+	import { createClasses, FormControl, InputPropsDefaults } from './imports';
 
 	export let {
 		value,
@@ -12,11 +12,11 @@
 		inline,
 		bordered,
 		placeholder
-	} = SharedInputProps;
+	} = InputPropsDefaults;
 
-	const classes = createClass(color, size, bordered, message);
+	const { inputClasses } = createClasses(color, size, bordered, message);
 </script>
 
 <FormControl {width} {label} {message} {inline}>
-	<input type="text" class={classes} bind:value {placeholder} on:change {disabled} />
+	<input type="text" class={inputClasses} bind:value {placeholder} on:change {disabled} />
 </FormControl>

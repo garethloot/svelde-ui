@@ -1,23 +1,21 @@
-import type { TClassStyles, TInputWidth, TMessage } from '../../../types/global';
+import type { TMessage } from '../message';
+import type { TInputWidth } from '../types';
+
 import { inputWidth } from '../../../utils/inputs';
-import { messageClassAndText } from '../../../utils/message';
+import { messageClass } from '../message';
+import { stylesToClass } from '$lib/utils/styles';
 
-const MessageTypes: TClassStyles = {
-	success: 'text-success',
-	warning: 'text-warning',
-	error: 'text-error'
-};
+export const createClasses = (width: TInputWidth, message: TMessage) => {
+	const formControlClasses: (string | undefined)[] = ['form-control'];
 
-export const createClass = (width: TInputWidth, message: TMessage) => {
-	const classes = ['form-control'];
-	if (width) classes.push(inputWidth(width));
-	if (message) classes.push(messageClassAndText(message, MessageTypes).classText);
-	return classes.join(' ');
-};
+	if (width) formControlClasses.push(inputWidth(width));
+	if (message) formControlClasses.push(messageClass(message));
 
-export const getMessage = (message: TMessage) => {
-	const classes = ['label-text-alt'];
-	const { classText, messageText } = messageClassAndText(message, MessageTypes);
-	if (message) classes.push(classText);
-	return { messageClasses: classes.join(' '), messageText };
+	const messageClasses: (string | undefined)[] = ['label-text-alt'];
+	if (message) messageClasses.push(messageClass(message));
+
+	return {
+		formControlClasses: stylesToClass(formControlClasses),
+		messageClasses: stylesToClass(messageClasses)
+	};
 };
